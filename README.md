@@ -2,7 +2,9 @@
 
 <p>Neste projeto será desenvolvida uma ferramenta de desenho gráfico, similar ao “Microsoft Paint” se baseando no conceito do Liquid Galaxy, onde o usuário poderá desenhar em diversas telas simultaneamente, trazendo uma experiência interativa, casual e divertida, divulgando também a plataforma Liquid Galaxy</p>
 
-<img alt="Galaxy Paint" src=".github/mockup.gif"/>
+<p align="center">
+  <img alt="Galaxy Paint" src=".github/mockup.gif" width="400px"/>
+</p>
 
 ## 🚀 Tecnologias
 
