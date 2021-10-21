@@ -1,5 +1,5 @@
 body {
-  background-color:azure;
+  background-color: azure;
   height: 100vh;
   width: 100vw;
   margin: 0;
@@ -14,7 +14,7 @@ body {
 }
 
 .app-bar > span {
-  line-height: 10vh; 
+  line-height: 10vh;
   vertical-align: middle;
   margin: 0% 2%;
 }
@@ -23,12 +23,13 @@ body {
   font-size: x-large;
   font-family: sans-serif;
   color: white;
-  line-height: 10vh; 
+  line-height: 10vh;
   vertical-align: middle;
 }
 
 .tools {
   justify-content: center;
+  vertical-align: center;
   display: inline-flex;
   width: 100vw;
   margin: 3% 0%;
@@ -91,9 +92,45 @@ body {
   background-color: blueviolet;
 }
 
+.dot {
+  background-color: black;
+  border-radius: 50%;
+}
+
+.dot.small {
+  height: 8px;
+  width: 8px;
+  margin-top: 8px;
+}
+
+.dot.medium {
+  height: 16px;
+  width: 16px;
+  margin-top: 4px;
+}
+
+.dot.big {
+  height: 24px;
+  width: 24px;
+}
+
+.width {
+  margin-left: 2%;
+  margin-top: 0.3%;
+  font-family: sans-serif;
+  vertical-align: middle;
+}
+
 #canvas-container {
   width: 100%;
-  text-align:center;
+  text-align: center;
+  /* background: repeating-linear-gradient(
+    90deg,
+    #fff,
+    #fff 20px,
+    #000 20px,
+    #000 40px
+  ); */
 }
 
 canvas {
@@ -101,5 +138,9 @@ canvas {
   background-color: white;
 }
 
-.material-icons.md-36 { font-size: 36px; }
-.material-icons.md-light { color: rgba(255, 255, 255, 1); }
+.material-icons.md-36 {
+  font-size: 36px;
+}
+.material-icons.md-light {
+  color: rgba(255, 255, 255, 1);
+}
