@@ -96,6 +96,7 @@ canvas {
   left: 50%;
   position: absolute;
   margin: -12% 0 0 -45%;
+  background-color: white;
 }
 
 .material-icons.md-36 { font-size: 36px; }

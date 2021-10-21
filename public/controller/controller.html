@@ -1,22 +1,23 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset='utf-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <title>Galaxy Paint Controller</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel="stylesheet" href="controller.css">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
+
 <body id="body">
     <div class="app-bar">
         <span class="material-icons md-36 md-light">brush</span>
         <div class="title">Galaxy Paint</div>
     </div>
     <div class="tools">
-        <span class="material-icons icon">edit</span>
-        <img src="../assets/eraser.png" class="image-icon icon">
+        <span class="material-icons icon" onclick="setColor('black')" style="cursor: pointer;">edit</span>
+        <img src="../assets/eraser.png" class="image-icon icon" onclick="setColor('white')" style="cursor: pointer;">
         <div class="color-selector black" onclick="setColor('black')"></div>
         <div class="color-selector grey" onclick="setColor('grey')"></div>
         <div class="color-selector darkred" onclick="setColor('darkred')"></div>
@@ -33,4 +34,5 @@
 
 <script src="/socket.io/socket.io.js"></script>
 <script src='controller.js'></script>
+
 </html>
