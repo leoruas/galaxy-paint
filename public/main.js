@@ -2,6 +2,7 @@ var socket = io();
 const canvas = document.getElementById('canvas') //canvas reference
 const ctx = canvas.getContext('2d')
 var nScreens;
+var screenNumber = Number(location.pathname.slice(1))
 
 //brush variables
 var start = 0;
@@ -31,14 +32,23 @@ function onRedraw(payload) {
     ctx.lineJoin = "round";
     ctx.lineWidth = 5;
 
+    const width = canvas.width * nScreens
+    const height = canvas.height
+    const offsetX = (screenNumber - 1) * window.innerWidth
     for (var i = 0; i < clickX.length; i++) {
+        const prevX = clickX[i - 1] * width - offsetX //previous x
+        const prevY = clickY[i - 1] * height // previous y
+
+        const x = clickX[i] * width - offsetX //curent x
+        const y = clickY[i] * height //current y
+
         ctx.beginPath();
         if (clickDrag[i] && i) {
-            ctx.moveTo(clickX[i - 1] * canvas.width, clickY[i - 1] * canvas.height);
+            ctx.moveTo(prevX, prevY);
         } else {
-            ctx.moveTo((clickX[i] * canvas.width) - 1, clickY[i] * canvas.height);
+            ctx.moveTo(x - 1, y);
         }
-        ctx.lineTo(clickX[i] * canvas.width, clickY[i] * canvas.height);
+        ctx.lineTo(x, y);
         ctx.closePath();
         ctx.stroke();
     }
