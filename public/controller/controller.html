@@ -5,11 +5,32 @@
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <title>Galaxy Paint Controller</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel="stylesheet" href="controller.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
 </head>
 <body id="body">
+    <div class="app-bar">
+        <span class="material-icons md-36 md-light">brush</span>
+        <div class="title">Galaxy Paint</div>
+    </div>
+    <div class="tools">
+        <span class="material-icons icon">edit</span>
+        <img src="../assets/eraser.png" class="image-icon icon">
+        <div class="color-selector black"></div>
+        <div class="color-selector grey"></div>
+        <div class="color-selector darkred"></div>
+        <div class="color-selector red"></div>
+        <div class="color-selector orange"></div>
+        <div class="color-selector yellow"></div>
+        <div class="color-selector green"></div>
+        <div class="color-selector lightblue"></div>
+        <div class="color-selector blue"></div>
+        <div class="color-selector violet"></div>
+    </div>
     <canvas id="canvas"></canvas>
 </body>
 
 <script src="/socket.io/socket.io.js"></script>
-<script src='index.js'></script>
+<script src='controller.js'></script>
 </html>

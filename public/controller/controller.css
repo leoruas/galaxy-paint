@@ -1,0 +1,101 @@
+body {
+  background-color:azure;
+  height: 100vh;
+  width: 100vw;
+  margin: 0;
+  display: block;
+}
+
+.app-bar {
+  height: 10vh;
+  width: 100vw;
+  background-color: black;
+  display: inline-flex;
+}
+
+.app-bar > span {
+  line-height: 10vh; 
+  vertical-align: middle;
+  margin: 0% 2%;
+}
+
+.title {
+  font-size: x-large;
+  font-family: sans-serif;
+  color: white;
+  line-height: 10vh; 
+  vertical-align: middle;
+}
+
+.tools {
+  justify-content: center;
+  display: inline-flex;
+  width: 100vw;
+  margin: 3% 0%;
+}
+
+.icon {
+  margin: 0 10px;
+}
+
+.image-icon {
+  height: 24px;
+  width: 24px;
+  margin-right: 2%;
+}
+
+.color-selector {
+  height: 24px;
+  width: 24px;
+  margin: 0 4px;
+}
+
+.color-selector.black {
+  background-color: black;
+}
+
+.color-selector.grey {
+  background-color: grey;
+}
+
+.color-selector.darkred {
+  background-color: darkred;
+}
+
+.color-selector.red {
+  background-color: red;
+}
+
+.color-selector.orange {
+  background-color: orange;
+}
+
+.color-selector.yellow {
+  background-color: yellow;
+}
+
+.color-selector.green {
+  background-color: green;
+}
+
+.color-selector.lightblue {
+  background-color: deepskyblue;
+}
+
+.color-selector.blue {
+  background-color: blue;
+}
+
+.color-selector.violet {
+  background-color: blueviolet;
+}
+
+canvas {
+  top: 50%;
+  left: 50%;
+  position: absolute;
+  margin: -12% 0 0 -45%;
+}
+
+.material-icons.md-36 { font-size: 36px; }
+.material-icons.md-light { color: rgba(255, 255, 255, 1); }
