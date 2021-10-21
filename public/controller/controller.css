@@ -91,10 +91,10 @@ body {
 }
 
 canvas {
-  top: 55%;
+  top: 50%;
   left: 50%;
   position: absolute;
-  transform: translate(-50%, -50%);
+  margin: -12% 0 0 -45%;
 }
 
 .material-icons.md-36 { font-size: 36px; }
