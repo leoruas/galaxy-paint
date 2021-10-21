@@ -31,13 +31,9 @@ socket.on('newScreen', onNewScreen)
 function init() {
     //canvas setup
     canvas.style = 'border: 1px solid black'
-    const canvasH = window.innerHeight * 0.6 //canvas height calculation
-    const screenW = canvasH * 9 / 16 //screen width calculation
+    canvas.width = window.innerWidth * 0.8
+    canvas.height = window.innerHeight * 0.6
 
-    canvas.width = screenW * nScreens
-    canvas.height = canvasH
-
-    for (let i = 0; i <= nScreens; i++) screenBreakpoints.push(i * screenW)
 
     //Setting canvas event listeners
     canvas.addEventListener('mousedown', onMouseDown);
