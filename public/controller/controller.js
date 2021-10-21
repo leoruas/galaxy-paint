@@ -10,6 +10,10 @@ var clickY = [];
 var clickDrag = [];
 var paint;
 
+//brush variables
+var brushColor = 'black'
+var brushOptions = []
+
 /**
  * On new screen method -> responsible for setting variables for screen on connection and calling init function
  * @param {Object} payload object variable containing the necessary information
@@ -84,7 +88,9 @@ function onMouseleave() {
  * @param {Boolean} dragging flag that indicates if user is dragging
  */
 function addClick(x, y, dragging) {
-    console.log('add', x, y, dragging)
+    brushOptions.push({
+        color: brushColor
+    })
     clickX.push(x);
     clickY.push(y);
     clickDrag.push(dragging);
@@ -96,13 +102,13 @@ function addClick(x, y, dragging) {
 function redraw() {
     ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height); // Clears the canvas
 
-    ctx.strokeStyle = "black";
     ctx.lineJoin = "round";
     ctx.lineWidth = 5;
 
     const auxClickX = []
     const auxClickY = []
     for (var i = 0; i < clickX.length; i++) {
+        ctx.strokeStyle = brushOptions[i].color;
         auxClickX.push(clickX[i] / canvas.width)
         auxClickY.push(clickY[i] / canvas.height)
 
@@ -117,5 +123,9 @@ function redraw() {
         ctx.stroke();
     }
 
-    socket.emit('redraw', { clickX: auxClickX, clickY: auxClickY, clickDrag })
+    socket.emit('redraw', { clickX: auxClickX, clickY: auxClickY, clickDrag, brushOptions })
+}
+
+function setColor(color) {
+    brushColor = color
 }

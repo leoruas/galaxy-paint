@@ -4,10 +4,6 @@ const ctx = canvas.getContext('2d')
 var nScreens;
 var screenNumber = Number(location.pathname.slice(1))
 
-//brush variables
-var start = 0;
-var end = Math.PI * 2;
-
 /**
  * On new screen method -> responsible for setting variables for screen on connection and calling init function
  * @param {Object} payload object variable containing the necessary information
@@ -26,9 +22,8 @@ socket.on('newScreen', onNewScreen)
  */
 function onRedraw(payload) {
     ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height); // Clears the canvas
-    const { clickX, clickY, clickDrag } = payload
+    const { clickX, clickY, clickDrag, brushOptions } = payload
 
-    ctx.strokeStyle = "black";
     ctx.lineJoin = "round";
     ctx.lineWidth = 5;
 
@@ -36,6 +31,7 @@ function onRedraw(payload) {
     const height = canvas.height
     const offsetX = (screenNumber - 1) * window.innerWidth
     for (var i = 0; i < clickX.length; i++) {
+        ctx.strokeStyle = brushOptions[i].color;
         const prevX = clickX[i - 1] * width - offsetX //previous x
         const prevY = clickY[i - 1] * height // previous y
 
