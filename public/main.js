@@ -31,6 +31,7 @@ function onRedraw(payload) {
     const height = canvas.height
     const offsetX = (screenNumber - 1) * window.innerWidth
     for (var i = 0; i < clickX.length; i++) {
+        ctx.lineWidth = brushOptions[i].width
         ctx.strokeStyle = brushOptions[i].color;
         const prevX = clickX[i - 1] * width - offsetX //previous x
         const prevY = clickY[i - 1] * height // previous y

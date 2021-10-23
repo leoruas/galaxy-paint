@@ -12,6 +12,7 @@ var paint;
 
 //brush variables
 var brushColor = 'black'
+var brushWidth = 5
 var brushOptions = []
 
 /**
@@ -85,7 +86,8 @@ function onMouseleave() {
  */
 function addClick(x, y, dragging) {
     brushOptions.push({
-        color: brushColor
+        color: brushColor,
+        width: brushWidth
     })
     clickX.push(x);
     clickY.push(y);
@@ -99,11 +101,11 @@ function redraw() {
     ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height); // Clears the canvas
 
     ctx.lineJoin = "round";
-    ctx.lineWidth = 5;
 
     const auxClickX = []
     const auxClickY = []
     for (var i = 0; i < clickX.length; i++) {
+        ctx.lineWidth = brushOptions[i].width
         ctx.strokeStyle = brushOptions[i].color;
         auxClickX.push(clickX[i] / canvas.width)
         auxClickY.push(clickY[i] / canvas.height)
@@ -124,4 +126,8 @@ function redraw() {
 
 function setColor(color) {
     brushColor = color
+}
+
+function setWidth(width) {
+    brushWidth = width
 }
