@@ -144,7 +144,17 @@ function redraw() {
         ctx.stroke();
     }
 
+    drawBorders()
+
     socket.emit('redraw', { clickX: auxClickX, clickY: auxClickY, clickDrag, brushOptions })
+}
+
+function drawBorders() {
+    const width = canvas.width
+
+    for(let i = 1; i < nScreens; i++) {
+        ctx.fillRect(i * (width / nScreens), 0, 1, canvas.height)
+    }    
 }
 
 function setColor(color) {
