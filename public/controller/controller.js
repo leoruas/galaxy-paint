@@ -61,6 +61,11 @@ function init() {
     canvas.addEventListener('mousemove', onMouseMove);
     canvas.addEventListener('mouseup', onMouseup);
     canvas.addEventListener('mouseleave', onMouseleave);
+
+    canvas.addEventListener('touchstart', onTouchStart);
+    canvas.addEventListener('touchmove', onTouchMove);
+    canvas.addEventListener('touchend', onMouseup);
+
     redraw()
 }
 
@@ -75,12 +80,34 @@ function onMouseDown(e) {
 }
 
 /**
+ * On touch start method -> responsible for adding mouse positions on array when touch action starts in canvas
+ * @param {Object} e MouseEvent object containing mouse position info
+ */
+function onTouchStart(e) {
+    console.log(e)
+    paint = true;
+    addClick(e.touches[0].clientX - this.offsetLeft, e.touches[0].clientY - this.offsetTop);
+    redraw();
+}
+
+/**
  * On mouse move method -> responsible for adding mouse positions on array when mouse moves in canvas
  * @param {Object} e MouseEvent object containing mouse position info
  */
 function onMouseMove(e) {
     if (paint) {
         addClick(e.pageX - this.offsetLeft, e.pageY - this.offsetTop, true);
+        redraw();
+    }
+}
+
+/**
+ * On touch move method -> responsible for adding mouse positions on array when touch moves in canvas
+ * @param {Object} e MouseEvent object containing mouse position info
+ */
+ function onTouchMove(e) {
+    if (paint) {
+        addClick(e.touches[0].clientX - this.offsetLeft, e.touches[0].clientY - this.offsetTop, true);
         redraw();
     }
 }
@@ -152,9 +179,9 @@ function redraw() {
 function drawBorders() {
     const width = canvas.width
 
-    for(let i = 1; i < nScreens; i++) {
+    for (let i = 1; i < nScreens; i++) {
         ctx.fillRect(i * (width / nScreens), 0, 1, canvas.height)
-    }    
+    }
 }
 
 function setColor(color) {
