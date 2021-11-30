@@ -5,15 +5,15 @@ const ctx = canvas.getContext('2d')
 const screenBreakpoints = []; //array with breakpoints based on canvas width and number of screens
 
 //mouse position arrays
-var clickX = [];
-var clickY = [];
-var clickDrag = [];
+var clickX;
+var clickY;
+var clickDrag;
 var paint;
 
 //brush variables
-var brushColor = 'black'
-var brushWidth = 5
-var brushOptions = []
+var brushColor = 'black';
+var brushWidth = 5;
+var brushOptions;
 
 /**
  * On new screen method -> responsible for setting variables for screen on connection and calling init function
@@ -21,10 +21,30 @@ var brushOptions = []
  */
 function onNewScreen(payload) {
     nScreens = payload.nScreens
+    clickX = payload.clickX
+    clickY = payload.clickY
+    clickDrag = payload.clickDrag
+    brushOptions = payload.brushOptions
 
     init()
 }
 socket.on('newScreen', onNewScreen)
+
+/**
+ * On new screen method -> responsible for setting variables for screen on connection and calling init function
+ * @param {Object} payload object variable containing the necessary information
+ */
+function onAddClick(payload) {
+    if (payload.id !== socket.id) {
+        clickX = payload.clickX
+        clickY = payload.clickY
+        clickDrag = payload.clickDrag
+        brushOptions = payload.brushOptions
+
+        redraw()
+    }
+}
+socket.on('addClick', onAddClick)
 
 /**
  * Init method -> responsible for setting up the canvas and adding events for drawing
@@ -41,6 +61,7 @@ function init() {
     canvas.addEventListener('mousemove', onMouseMove);
     canvas.addEventListener('mouseup', onMouseup);
     canvas.addEventListener('mouseleave', onMouseleave);
+    redraw()
 }
 
 /**
@@ -92,6 +113,8 @@ function addClick(x, y, dragging) {
     clickX.push(x);
     clickY.push(y);
     clickDrag.push(dragging);
+
+    socket.emit('addClick', { x, y, dragging, brushColor, brushWidth })
 }
 
 /**

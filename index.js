@@ -28,12 +28,20 @@ app.get('/:id', (req, res) => {
 
 })
 
+//mouse position arrays
+var clickX = [];
+var clickY = [];
+var clickDrag = [];
+
+//brush variables
+var brushOptions = []
+
 //Socket configuration/event listeners
 io.on('connect', (socket) => {
   console.log(`User connected with id: ${socket.id}`)
 
   //emit number of screens to new screen
-  socket.emit('newScreen', { nScreens })
+  socket.emit('newScreen', { nScreens, clickX, clickY, clickDrag, brushOptions })
 
   /**
  * On redraw method -> responsible for emitting points to be drawn to all clients
@@ -43,6 +51,20 @@ io.on('connect', (socket) => {
     io.emit('redraw', payload)
   }
   socket.on('redraw', onRedraw)
+
+  function onAddClick(payload) {
+    const { x, y, dragging, brushColor, brushWidth } = payload
+    brushOptions.push({
+      color: brushColor,
+      width: brushWidth
+    })
+    clickX.push(x);
+    clickY.push(y);
+    clickDrag.push(dragging);
+
+    io.emit('addClick', { clickX, clickY, clickDrag, brushOptions, id: socket.id })
+  }
+  socket.on('addClick', onAddClick)
 })
 
 //Server listener
