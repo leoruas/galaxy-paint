@@ -29,14 +29,19 @@ function onRedraw(payload) {
 
     const width = canvas.width * nScreens
     const height = canvas.height
-    const offsetX = (screenNumber - 1) * window.innerWidth
+
+    const isRightScreen = screenNumber <= (Math.ceil(nScreens / 2));
+    const screenOffsetIndex = isRightScreen ? screenNumber - 1 : ((nScreens + 1) - screenNumber) * -1; //offset index based on screenNumber
+    const baseOffset = Math.floor(nScreens / 2) * window.innerWidth //base offset (same for all screens) calculated with total number of screens
+    const screenOffset = screenOffsetIndex * window.innerWidth + baseOffset
+
     for (var i = 0; i < clickX.length; i++) {
         ctx.lineWidth = brushOptions[i].width
         ctx.strokeStyle = brushOptions[i].color;
-        const prevX = clickX[i - 1] * width - offsetX //previous x
+        const prevX = clickX[i - 1] * width - screenOffset //previous x
         const prevY = clickY[i - 1] * height // previous y
 
-        const x = clickX[i] * width - offsetX //curent x
+        const x = clickX[i] * width - screenOffset //curent x
         const y = clickY[i] * height //current y
 
         ctx.beginPath();

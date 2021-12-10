@@ -186,6 +186,17 @@ function drawBorders() {
 
 function setColor(color) {
     brushColor = color
+
+    //remove selected class from current
+    const selected = Array.from(document.getElementsByClassName('selected'))
+    if(selected.length) {
+        selected[0].classList.remove('selected')
+    }
+
+    //add class selected to new color
+    const selectedColor = document.getElementById(`selector-${color}`)
+    selectedColor.classList.add('selected')
+
 }
 
 function setWidth(width) {
